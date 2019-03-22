@@ -1,11 +1,14 @@
 package com.sharabassy.moviecouch.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="user_movie")
@@ -15,11 +18,20 @@ public class UserMovie
 	@EmbeddedId
 	private UserMovieId id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne( fetch = FetchType.EAGER,
+				cascade = { CascadeType.DETACH,
+							CascadeType.MERGE,
+							CascadeType.PERSIST,
+							CascadeType.REFRESH})
 	@MapsId("userId")
+	@JsonBackReference
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne( fetch = FetchType.EAGER,
+				cascade = { CascadeType.DETACH,
+							CascadeType.MERGE,
+							CascadeType.PERSIST,
+							CascadeType.REFRESH})
 	@MapsId("movieId")
 	private Movie movie;
 	

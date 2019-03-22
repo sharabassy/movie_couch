@@ -7,11 +7,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="user")
@@ -33,14 +36,16 @@ public class User
 	
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
-	           orphanRemoval = true)
+	           orphanRemoval = true,
+	           fetch = FetchType.EAGER)
+	@JsonManagedReference
 	private List<UserMovie> movies = new ArrayList<>();
 	
 	//Constructors
 	
 	public User() {}
 
-	public User(int id, String username, String password, String email) 
+	public User(String username, String password, String email) 
 	{
 		this.username = username;
 		this.password = password;
