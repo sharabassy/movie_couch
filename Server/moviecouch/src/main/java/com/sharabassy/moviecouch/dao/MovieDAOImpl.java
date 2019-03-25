@@ -25,7 +25,23 @@ public class MovieDAOImpl implements MovieDAO
 		List<Movie> movies = query.getResultList();
 		
 		return movies;
-	} 
+	}
+
+	@Override
+	public Movie getMovie(int movieId) 
+	{
+		Session currentSession = sessionFactory.getCurrentSession();
+		Movie movie = currentSession.get(Movie.class, movieId);
+		
+		return movie;
+	}
+
+	@Override
+	public void saveMovie(Movie movie) 
+	{
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.saveOrUpdate(movie);
+	}
 	
 	
 

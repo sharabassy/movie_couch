@@ -102,6 +102,19 @@ public class User
 		movies.add(userMovie);
 	}
 	
+	public boolean hasMovie(Movie movie)
+	{
+		for(UserMovie userMovie:movies)
+		{
+			String imdbId = userMovie.getMovie().getImdbId();
+			String newImdbId = movie.getImdbId();
+			if(imdbId!=null && newImdbId!=null && imdbId.equalsIgnoreCase(newImdbId));
+				return true;
+		}
+		
+		return false;
+	}
+	
 	public void removeMovie(Movie movie)
 	{
 		for(Iterator<UserMovie> iterator = movies.iterator(); iterator.hasNext();)

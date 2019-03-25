@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 @Entity
 @Table(name="movie")
 public class Movie 
@@ -17,6 +19,7 @@ public class Movie
 	private int id;
 	
 	@Column(name="imdb_id")
+	@NaturalId
 	private String imdbId;
 	
 	@Column(name="title")

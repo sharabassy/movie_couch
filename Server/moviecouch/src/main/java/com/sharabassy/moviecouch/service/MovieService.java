@@ -7,4 +7,8 @@ import com.sharabassy.moviecouch.entity.Movie;
 public interface MovieService 
 {
 	public List<Movie> getMovies();
+	
+	public Movie getMovie(int movieId);
+	
+	public void saveMovie(Movie movie);
 }

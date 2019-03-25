@@ -22,4 +22,18 @@ public class MovieServiceImpl implements MovieService
 		return movieDAO.getMovies();
 	}
 
+	@Override
+	@Transactional
+	public Movie getMovie(int movieId) 
+	{
+		return movieDAO.getMovie(movieId);
+	}
+
+	@Override
+	@Transactional
+	public void saveMovie(Movie movie) 
+	{
+		movieDAO.saveMovie(movie);		
+	}
+
 }
