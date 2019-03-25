@@ -9,8 +9,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="movie")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie 
 {
 	@Id
