@@ -30,10 +30,10 @@ public class UserDAOImpl implements UserDAO
 	}
 
 	@Override
-	public User getUser(int theId) 
+	public User getUser(int userId) 
 	{
 		Session currentSession = sessionFactory.getCurrentSession();
-		User user = currentSession.get(User.class, theId);
+		User user = currentSession.get(User.class, userId);
 		
 		return user;
 	}
@@ -44,6 +44,16 @@ public class UserDAOImpl implements UserDAO
 		Session currentSession = sessionFactory.getCurrentSession();
 		currentSession.saveOrUpdate(user);
 	}
+	
+	@Override
+	public void deleteUser(int userId) 
+	{
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("delete from User where id=:userId");
+		query.setParameter("userId", userId);
+		
+		query.executeUpdate();
+	}
 
 	@Override
 	public User addMovieToUser(User user, Movie movie)
@@ -52,7 +62,6 @@ public class UserDAOImpl implements UserDAO
 		
 		//1- Movie is not in DB?
 		Movie existingMovie = (Movie)currentSession.bySimpleNaturalId(Movie.class).load(movie.getImdbId());
-		//TODO naturalId did not work on an existing record,need to test on a newly entered record
 		if(existingMovie != null)
 			movie = existingMovie;
 		
@@ -65,18 +74,22 @@ public class UserDAOImpl implements UserDAO
 		}		
 		
 		return user;
-
 	}
 
 	@Override
-	public void deleteUser(int userId) 
+	public User removeMovieFromUser(User user, Movie movie) 
 	{
 		Session currentSession = sessionFactory.getCurrentSession();
-		Query query = currentSession.createQuery("delete from User where id=:userId");
-		query.setParameter("userId", userId);
-		
-		query.executeUpdate();
+		 if(user.hasMovie(movie))
+		 {
+			 user.removeMovie(movie);
+			 currentSession.saveOrUpdate(user);
+		 }
+		 
+		return user;
 	}
+	
+	
 	
 	
 

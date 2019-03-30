@@ -48,17 +48,6 @@ public class UserRestController
 		return user;
 	}
 	
-	@PutMapping("/users/{userId}")
-	public User addMovieToUser(@PathVariable int userId, @RequestBody Movie movie)
-	{
-		User user = userService.getUser(userId);
-		if(user == null)
-			throw new NotFoundException("User id not found "+userId);
-		
-		movie.setId(0);
-		return userService.addMovieToUser(user, movie);
-	}
-	
 	@PutMapping
 	public User updateUser(@RequestBody User user)
 	{
@@ -73,4 +62,27 @@ public class UserRestController
 		
 		return "Deleted user with id - " + userId;
 	}
+	
+	@PutMapping("/users/{userId}")
+	public User addMovieToUser(@PathVariable int userId, @RequestBody Movie movie)
+	{
+		User user = userService.getUser(userId);
+		if(user == null)
+			throw new NotFoundException("User id not found "+userId);
+		
+		movie.setId(0);
+		return userService.addMovieToUser(user, movie);
+	}
+	
+	@PutMapping("/users/{userId}")
+	public User removeMovieFromUser(@PathVariable int userId, @RequestBody Movie movie)
+	{
+		User user = userService.getUser(userId);
+		if(user == null)
+			throw new NotFoundException("User id not found "+userId);
+		
+		return userService.removeMovieFromUser(user, movie);
+	}
+	
+
 }

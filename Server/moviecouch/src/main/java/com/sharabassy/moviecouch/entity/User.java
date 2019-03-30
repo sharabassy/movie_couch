@@ -120,7 +120,7 @@ public class User
 		for(Iterator<UserMovie> iterator = movies.iterator(); iterator.hasNext();)
 		{
 			UserMovie userMovie = iterator.next();
-			if(userMovie.getMovie().equals(movie) && userMovie.getUser().equals(this))
+			if(userMovie.getMovie().getImdbId().equals(movie.getImdbId()) && userMovie.getUser().equals(this))
 			{
 				iterator.remove();
 				userMovie.setMovie(null);

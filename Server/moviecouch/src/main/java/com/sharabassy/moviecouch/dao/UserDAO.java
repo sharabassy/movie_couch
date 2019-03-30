@@ -9,11 +9,13 @@ public interface UserDAO
 {
 	public List<User>getUsers();
 	
-	public User getUser(int theId);
+	public User getUser(int id);
 	
-	public void saveUser(User theUser);
+	public void saveUser(User user);
 	
-	public void deleteUser(int theId);
+	public void deleteUser(int id);
 
-	public User addMovieToUser(User theUser, Movie theMovie);
+	public User addMovieToUser(User user, Movie movie);
+	
+	public User removeMovieFromUser(User user, Movie movie);
 }

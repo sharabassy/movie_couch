@@ -36,6 +36,13 @@ public class UserServiceImpl implements UserService
 	{
 		userDAO.saveUser(theUser);
 	}
+	
+	@Override
+	@Transactional
+	public void deleteUser(int theId) 
+	{
+		userDAO.deleteUser(theId);
+	}
 
 	@Override
 	@Transactional
@@ -43,12 +50,12 @@ public class UserServiceImpl implements UserService
 	{
 		return userDAO.addMovieToUser(theUser, theMovie);
 	}
-
+	
 	@Override
 	@Transactional
-	public void deleteUser(int theId) 
+	public User removeMovieFromUser(User user,Movie movie)
 	{
-		userDAO.deleteUser(theId);
+		return userDAO.removeMovieFromUser(user, movie);
 	}
 
 }

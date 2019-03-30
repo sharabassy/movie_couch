@@ -16,4 +16,6 @@ public interface UserService
 	public void deleteUser(int theId);
 
 	public User addMovieToUser(User theUser, Movie theMovie);
+	
+	public User removeMovieFromUser(User user,Movie movie);
 }
