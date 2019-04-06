@@ -74,7 +74,7 @@ public class UserRestController
 		return userService.addMovieToUser(user, movie);
 	}
 	
-	@PutMapping("/users/{userId}")
+	@PutMapping("/users/rem/{userId}")
 	public User removeMovieFromUser(@PathVariable int userId, @RequestBody Movie movie)
 	{
 		User user = userService.getUser(userId);
