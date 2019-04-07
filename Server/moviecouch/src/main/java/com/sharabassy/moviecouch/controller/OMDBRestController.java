@@ -54,7 +54,7 @@ public class OMDBRestController
 	}
 	
 	@GetMapping("/{imdbId}")
-	public Movie getMovie(@PathVariable String imdbId)
+	public Movie getMovieByImdbId(@PathVariable String imdbId)
 	{
 		//https://www.omdbapi.com/?i=tt1670627&apikey=ead5fbba
 		
