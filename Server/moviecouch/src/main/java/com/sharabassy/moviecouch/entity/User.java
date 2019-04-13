@@ -108,7 +108,10 @@ public class User
 		{
 			String imdbId = userMovie.getMovie().getImdbId();
 			String newImdbId = movie.getImdbId();
-			if(imdbId!=null && newImdbId!=null && imdbId.equalsIgnoreCase(newImdbId));
+			
+			if(imdbId == null || newImdbId == null)
+				continue;
+			else if(imdbId.equalsIgnoreCase(newImdbId))
 				return true;
 		}
 		
@@ -129,9 +132,4 @@ public class User
 		}
 	}
 	
-	
-	
-	
-	
-
 }

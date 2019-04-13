@@ -48,7 +48,7 @@ public class UserRestController
 		return user;
 	}
 	
-	@PutMapping
+	@PutMapping("/users")
 	public User updateUser(@RequestBody User user)
 	{
 		userService.saveUser(user);
@@ -83,6 +83,7 @@ public class UserRestController
 		
 		return userService.removeMovieFromUser(user, movie);
 	}
+	
 	
 
 }
